@@ -33,18 +33,18 @@ final class OpenWeatherMapProvider implements WeatherProvider
         $response = $this->httpClient
             ->get($this->prepareRequestUrl($city, $units));
 
+        if ($response['message'] === 'city not found' || (int) $response['cod'] === 404) {
+            echo 'Requested City was not found. Please try again, with a proper name' . PHP_EOL;
+            exit;
+        }
+
         $convertedTemp = match ($units) {
             WeatherUnits::Default => sprintf('%sK', (int) $response['main']['temp']),
             WeatherUnits::Imperial => sprintf('%sF', (int) $response['main']['temp']),
             WeatherUnits::Metric => sprintf('%sC', (int) $response['main']['temp']),
         };
 
-        $description = sprintf(
-            'Current weather is %s',
-            $response['weather'][0]['description']
-        );
-
-        return new WeatherDTO($city, $convertedTemp, $description);
+        return new WeatherDTO($city, $convertedTemp, $response['weather'][0]['description']);
     }
 
     private function prepareRequestUrl(string $city, WeatherUnits $units): string

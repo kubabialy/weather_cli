@@ -6,13 +6,13 @@ use Theliver\WeatherCli\DTO\WeatherDTO;
 
 final class OutputMessageFormatter
 {
-    private const TEMPLATE = '%s: %s. Current temperature is: %s';
+    private const TEMPLATE = '%s: %s, temperature: %s';
 
     public function format(WeatherDTO $weatherDTO): string
     {
         return sprintf(
             self::TEMPLATE,
-            strtoupper($weatherDTO->getCity()),
+            ucfirst($weatherDTO->getCity()),
             $weatherDTO->getDescription(),
             $weatherDTO->getTemperature(),
         );
