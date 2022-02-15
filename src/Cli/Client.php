@@ -23,7 +23,8 @@ final class Client
     public function run(array $args): void
     {
         if (count($args) <= 1) {
-            throw new \Exception('Weather APP requires at least one argument. Please provide a city.');
+            echo 'Weather APP requires at least one argument. Please provide a city.' . PHP_EOL;
+            return;
         }
 
         $arguments = $this->parseArguments($args);
@@ -32,7 +33,7 @@ final class Client
 
         $currentWeather = $provider->getCurrentWeather(
             $arguments->getCity(),
-            WeatherUnits::createFromString($arguments->getUnits())
+            WeatherUnits::createFromString(ucfirst(strtolower($arguments->getUnits())))
         );
 
         echo $this->outputMessageFormatter->format($currentWeather) . PHP_EOL;
