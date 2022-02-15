@@ -12,8 +12,8 @@ final class CliArgumentsDTO
 
     public function __construct(
         private string $city,
-        ?string $provider = null,
         ?string $units = null,
+        ?string $provider = null,
     ) {
         $this->provider = $provider ?? WeatherProviders::OpenWeatherMap->name;
         $this->units = $units ?? WeatherUnits::Default->name;
