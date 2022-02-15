@@ -18,6 +18,8 @@ $ ./weather Berlin
 >> Berlin: broken clouds, temperature: 282K
 ```
 
+Then once you have the code, you can create `.env` from `.env.example` and paste your API key to the correct environmental variable.
+
 If you don't have PHP installed on your machine and are not interested in installing it either, then you can use [Docker](https://docker.com):
 ```bash
 $ cd /to/where/you/want/to/clone/it
@@ -81,6 +83,8 @@ There's a tiny `Dockerfile` so that you don't have to set up PHP for yourself on
 
 Important note, there are places where some shortcuts were taken and in normal circumstances an external library would be used.
 One of those examples is an actual call to an API where only `cURL` with a wrapper was used to provide some abstraction, on 'production' grade software I would recommend using Guzzle or some similar lib.
+
+The idea was to make this code fairly easy to extend if needed but to not over-engineer it by using DDD, CQRS and other design patterns that in normal circumstances are great.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
