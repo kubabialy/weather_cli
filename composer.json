@@ -7,6 +7,11 @@
             "Theliver\\WeatherCli\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Theliver\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "theliver",
@@ -15,5 +20,9 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "^9.5"
-    }
+    },
+  "require": {
+    "ext-curl": "*",
+        "vlucas/phpdotenv": "^5.4"
+  }
 }
