@@ -85,8 +85,3 @@ Important note, there are places where some shortcuts were taken and in normal c
 One of those examples is an actual call to an API where only `cURL` with a wrapper was used to provide some abstraction, on 'production' grade software I would recommend using Guzzle or some similar lib.
 
 The idea was to make this code fairly easy to extend if needed but to not over-engineer it by using DDD, CQRS and other design patterns that in normal circumstances are great.
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
