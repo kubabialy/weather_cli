@@ -14,7 +14,7 @@ class OpenWeatherMapProviderTest extends TestCase
         $city = 'Tokio';
         $appId = 'some_api_key';
         $url = sprintf(
-            'https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s',
+            'https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s&units=default',
             $city,
             $appId
         );
@@ -22,21 +22,18 @@ class OpenWeatherMapProviderTest extends TestCase
         $httpClient = $this->createMock(HttpClient::class);
         $httpClient->expects($this->once())
             ->method('get')
-            ->with([
-                'url' => $url,
-                'units' => 'Default'
-            ])
+            ->with($url)
             ->willReturn([
                 'coord' => [
                     'lon' => 123.12,
                     'lat' => 143.23,
                 ],
-                'weather' => [
+                'weather' => [[
                     'id' => 555,
                     'main' => 'Clear',
                     'description' => 'mainly clear',
                     'icon' => '01d',
-                ],
+                ]],
                 'base' => 'stations',
                 'main' => [
                     'temp' => 282.55,
@@ -78,6 +75,6 @@ class OpenWeatherMapProviderTest extends TestCase
 
         $this->assertEquals('282K', $weather->getTemperature());
         $this->assertEquals($city, $weather->getCity());
-        $this->assertEquals('Current weather is mainly clear', $weather->getDescription());
+        $this->assertEquals('mainly clear', $weather->getDescription());
     }
 }

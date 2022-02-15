@@ -11,7 +11,7 @@ class WeatherProviderFactoryTest extends TestCase
 {
     public function testShouldPassWithSupportedProvider(): void
     {
-        $_ENV['OPEN_WEATHER_API_KEY'] = 'foo';
+        $_ENV['OPEN_WEATHER_MAP_API_KEY'] = 'foo';
         $factory = new WeatherProviderFactory();
         $provider = $factory->make(WeatherProviders::OpenWeatherMap);
 
